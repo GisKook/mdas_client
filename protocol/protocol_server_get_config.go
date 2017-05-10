@@ -1,8 +1,6 @@
 package protocol
 
-import (
-	"github.com/giskook/mdas_client/base"
-)
+import ()
 
 type ServerGetConfigPacket struct {
 	Tid        uint64
@@ -10,7 +8,7 @@ type ServerGetConfigPacket struct {
 	SerialPort uint8
 }
 
-func (p *ServerLoginPacket) Serialize() []byte {
+func (p *ServerGetConfigPacket) Serialize() []byte {
 	return nil
 }
 

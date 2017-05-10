@@ -8,6 +8,12 @@ import (
 
 func event_handler_server_msg_get_config(c *Conn, p pkg.Packet) {
 	log.Println("event_handler_server_msg_get_config")
-	rep_get_conf_pkg := p.(*protocol.RepGetConfigPacket)
+	server_get_conf_pkg := p.(*protocol.ServerGetConfigPacket)
+	rep_get_conf_pkg := &protocol.RepGetConfigPacket{
+		Tid:        server_get_conf_pkg.Tid,
+		Serial:     server_get_conf_pkg.Serial,
+		SerialPort: server_get_conf_pkg.SerialPort,
+		BaudRate:   115200,
+	}
 	c.Send(rep_get_conf_pkg.Serialize())
 }

@@ -20,6 +20,15 @@ func event_handler_server_msg_common(conn *Conn) {
 			p := protocol.ParseServerLogin(pkgbyte)
 			event_handler_server_msg_login(conn, p)
 			conn.ReadMore = true
+		case protocol.PROTOCOL_REQ_RESTART:
+			p := protocol.ParseServerRestart(pkgbyte)
+			event_handler_server_msg_restart(conn, p)
+			conn.ReadMore = true
+		case protocol.PROTOCOL_REQ_GET_SERIAL_STATUS:
+			p := protocol.ParseServerGetConfig(pkgbyte)
+			event_handler_server_msg_get_config(conn, p)
+			conn.ReadMore = true
+
 		case protocol.PROTOCOL_ILLEGAL:
 			conn.ReadMore = false
 		case protocol.PROTOCOL_HALF_PACK:
